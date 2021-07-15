@@ -24,7 +24,7 @@ terraform {
 }
 
 provider "google" {
-  credentials = var.credentials_file
+  credentials = base64decode(var.credentials_file)
 
   project = var.project_id
   region  = var.region
@@ -32,7 +32,7 @@ provider "google" {
 }
 
 provider "google-beta" {
-  credentials = var.credentials_file
+  credentials = base64decode(var.credentials_file)
 
   project = var.project_id
   region  = var.region
