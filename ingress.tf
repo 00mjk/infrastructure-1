@@ -17,6 +17,10 @@ resource "helm_release" "nginx_ingress" {
     name  = "service.loadBalancerIP"
     value = google_compute_address.ingress.address
   }
+
+  depends_on = [
+    module.gke_cluster
+  ]
 }
 
 output "ingress_ip" {
