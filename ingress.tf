@@ -1,6 +1,10 @@
 resource "google_compute_address" "ingress" {
   name         = "ip-nginx-ingress"
   network_tier = "PREMIUM"
+
+  depends_on = [
+    google_project_service.project["compute.googleapis.com"]
+  ]
 }
 
 resource "helm_release" "nginx_ingress" {
