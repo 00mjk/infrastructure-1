@@ -1,7 +1,7 @@
 module "gke_cluster" {
   source = "./modules/gke_cluster"
 
-  vpc_id = module.network.id
+  vpc_id = google_compute_network.private_network.id
   region = var.region
   zone   = var.zone
 
