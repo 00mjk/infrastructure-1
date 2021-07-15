@@ -1,0 +1,26 @@
+name: Plan
+on:
+  push:
+    branches:
+      - !main
+jobs:
+  infra:
+    name: Terraform
+    runs-on: ubuntu-20.04
+    env:
+      TF_VAR_credentials_file: ${{ secrets.GCP_CREDENTIALS }}
+      TF_VAR_project_id: ${{ secrets.GCP_PROJECT_ID }}
+      TF_VAR_tfe_token: ${{ secrets.TFE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: kvrhdn/tfe-run@v1
+        with:
+          token: ${{ secrets.TFE_TOKEN }}
+          organization: tecnoly
+          workspace: infrastructure
+          message: |
+            Run triggered using tfe-run (commit: ${{ github.SHA }})
+
+          directory: ./
+          type: plan
+          wait-for-completion: true
