@@ -21,4 +21,8 @@ module "gke_cluster" {
   machine_type = "e2-small"
   disk_size_gb = "40"
   max_nodes    = "1"
+
+  depends_on = [
+    google_project_service.project["container.googleapis.com"]
+  ]
 }

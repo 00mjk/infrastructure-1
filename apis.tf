@@ -4,6 +4,7 @@ locals {
     "compute.googleapis.com",
     "servicenetworking.googleapis.com",
     "cloudresourcemanager.googleapis.com",
+    "container.googleapis.com",
   ]
 }
 
