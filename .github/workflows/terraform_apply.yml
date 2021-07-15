@@ -8,10 +8,6 @@ jobs:
     name: Terraform
     environment: production
     runs-on: ubuntu-20.04
-    env:
-      TF_VAR_credentials_file: ${{ secrets.GCP_CREDENTIALS }}
-      TF_VAR_project_id: ${{ secrets.GCP_PROJECT_ID }}
-      TF_VAR_tfe_token: ${{ secrets.TFE_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: kvrhdn/tfe-run@v1
@@ -25,3 +21,7 @@ jobs:
           directory: ./
           type: apply
           wait-for-completion: true
+          tf-vars: |
+            credentials_file = "${{ secrets.GCP_CREDENTIALS }}"
+            project_id       = "${{ secrets.GCP_PROJECT_ID }}"
+            tfe_token        = "${{ secrets.TFE_TOKEN }}"
