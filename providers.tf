@@ -13,6 +13,10 @@ terraform {
       source  = "hashicorp/helm"
       version = "~> 2.2.0"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.2.0"
+    }
     kubectl = {
       source  = "gavinbunney/kubectl"
       version = "1.11.2"
@@ -49,6 +53,14 @@ provider "helm" {
       module.gke_cluster.cluster_ca_certificate,
     )
   }
+}
+  
+provider "kubernetes" {
+  host  = "https://${module.gke_cluster.endpoint}"
+  token = data.google_client_config.provider.access_token
+  cluster_ca_certificate = base64decode(
+    module.gke_cluster.cluster_ca_certificate,
+  )
 }
 
 provider "kubectl" {
