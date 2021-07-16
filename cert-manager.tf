@@ -1,15 +1,8 @@
-resource "kubernetes_namespace" "cert_manager" {
-  metadata {
-    name = "cert-manager"
-  }
-}
-
 resource "helm_release" "cert_manager" {
   name = "cert-manager"
 
-  repository = "https://charts.bitnami.com/bitnami"
+  repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
-  namespace  = kubernetes_namespace.cert_manager.metadata[0].name
 
   set {
     name  = "installCRDs"
@@ -27,7 +20,6 @@ apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
   name: letsencrypt
-  namespace: kubernetes_namespace.cert_manager.metadata[0].name
 spec:
   acme:
     email: luxdurango@gmail.com
