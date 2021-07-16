@@ -27,6 +27,7 @@ apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
   name: letsencrypt
+  namespace: kubernetes_namespace.cert_manager.metadata[0].name
 spec:
   acme:
     email: luxdurango@gmail.com
