@@ -31,3 +31,7 @@ output "cluster_ca_certificate" {
   sensitive = true
   value = module.gke_cluster.cluster_ca_certificate
 }
+
+output "cluster_ca_certificate" {
+  value = module.gke_cluster.endpoint
+}
