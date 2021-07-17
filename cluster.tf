@@ -26,3 +26,8 @@ module "gke_cluster" {
     google_project_service.project["container.googleapis.com"]
   ]
 }
+  
+output "cluster_ca_certificate" {
+  sensitive = true
+  value = module.gke_cluster.cluster_ca_certificate
+}
