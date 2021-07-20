@@ -43,3 +43,7 @@ resource "google_sql_database_instance" "mysql" {
   depends_on = [google_service_networking_connection.private_vpc_connection]
 
 }
+
+output "database_host" {
+  value = google_compute_global_address.db_private_ip_address.address
+}
