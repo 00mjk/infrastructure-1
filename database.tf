@@ -47,3 +47,7 @@ resource "google_sql_database_instance" "mysql" {
 output "database_host" {
   value = google_compute_global_address.db_private_ip_address.address
 }
+
+output "database_instance_name" {
+  value = google_sql_database_instance.mysql.name
+}
