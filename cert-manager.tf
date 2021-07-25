@@ -16,8 +16,8 @@ resource "helm_release" "cert_manager" {
 
 resource "kubectl_manifest" "cert_issuer" {
   yaml_body = <<YAML
-apiVersion: cert-manager.io/v1alpha2
-kind: ClusterIssuer
+apiVersion: cert-manager.io/v1
+kind: Issuer
 metadata:
   name: letsencrypt
 spec:
